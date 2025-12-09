@@ -2,6 +2,12 @@ from fastapi import FastAPI
 import uvicorn
 from uvicorn import run
 from contas_a_pagar_e_receber.routers import contas_a_pagar_e_receber_routers
+from shared.database import engine, Base
+
+
+Base.metadata.drop_all(bind=engine)
+Base.metadata.create_all(bind=engine)
+
 
 app = FastAPI()
 
